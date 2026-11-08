@@ -115,17 +115,6 @@ section{padding:60px 0;position:relative}
 .offer .now{font-family:"Archivo Black";font-size:72px;line-height:1;margin:2px 0 4px}
 .offer .now sup{font-size:28px;vertical-align:28px;margin-right:4px}
 .offer .inst{font-size:16px;color:#5a4a3c;margin-bottom:20px}
-.order{background:#fff;border:1px solid #e3d5c7;border-radius:18px;padding:16px;margin-bottom:20px;font-size:16px}
-.order .row{display:flex;justify-content:space-between;gap:12px;padding:6px 0}
-.order .row.total{border-top:1px solid #e3d5c7;margin-top:6px;padding-top:12px;font-weight:800;font-size:18px}
-.order .row.add{color:#5a4a3c}
-.order .row.add[hidden]{display:none}
-.bump{display:flex;gap:12px;align-items:flex-start;background:#fff3c4;border:2px dashed #d99a00;border-radius:16px;padding:14px;margin:12px 0 4px;cursor:pointer}
-.bump input{flex:none;width:24px;height:24px;margin-top:2px;accent-color:var(--or)}
-.bump b{display:block;font-size:16px}
-.bump span{font-size:14px;color:#4a3a2c;display:block;margin-top:3px}
-.bump .tag{display:inline-block;background:#1a0f08;color:#fff3c4;font-size:11px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;border-radius:6px;padding:2px 7px;margin-bottom:6px}
-.order .hint{font-size:12px;color:#7a6a5c;margin-top:8px}
 
 /* garantia */
 .guar{display:flex;gap:18px;align-items:center;background:var(--bg2);border:1px solid var(--line);border-radius:var(--r);padding:22px}
@@ -274,20 +263,6 @@ footer{padding:30px 0 20px;text-align:center;color:#7a6a5c;font-size:13px;line-h
       <div class="now"><sup>R$</sup>47</div>
       <div class="inst">pagamento único · Pix ou cartão</div>
 
-      <div class="order" aria-live="polite">
-        <div class="row"><span>Kit Criação</span><span>R$ 47</span></div>
-        <label class="bump">
-          <input type="checkbox" id="bump">
-          <div><span class="tag">Adicione no checkout</span>
-            <b>Kit Edição por mais R$ 19</b>
-            <span>5 skills que tiram a cara de IA do texto, marcam onde cortar o vídeo e escrevem título, thumb e capítulos do YouTube.</span>
-          </div>
-        </label>
-        <div class="row add" id="bumpRow" hidden><span>Kit Edição</span><span>R$ 19</span></div>
-        <div class="row total"><span>Total</span><span id="total">R$ 47</span></div>
-        <p class="hint">A mesma caixa aparece na página de pagamento.</p>
-      </div>
-
       <a class="btn" href="#checkout" id="buy">Quero por R$47</a>
     </div>
   </div>
@@ -335,30 +310,12 @@ footer{padding:30px 0 20px;text-align:center;color:#7a6a5c;font-size:13px;line-h
 <script>
 /* ===== LINKS DO CHECKOUT (Kiwify) =====
    Cole aqui os links que a Kiwify der para cada oferta.
-   - criacao: checkout só do Kit Criação (R$47)
-   - criacaoComEdicao: checkout do Kit Criação + Kit Edição (R$66).
-     Se deixar vazio, o botão usa o link "criacao" (o bump fica no checkout da Kiwify). */
+   - criacao: checkout do Kit Criação (R$47). O order bump do Kit Edição
+     (R$19) aparece dentro desse checkout, configurado na Kiwify. */
 var CHECKOUT = {
-  criacao: "https://pay.kiwify.com.br/pzJCFZL",
-  criacaoComEdicao: ""
+  criacao: "https://pay.kiwify.com.br/pzJCFZL"
 };
-</script>
-<script>
-(function(){
-  var b=document.getElementById('bump'),row=document.getElementById('bumpRow'),
-      t=document.getElementById('total'),buy=document.getElementById('buy');
-  b.addEventListener('change',function(){
-    var on=b.checked;row.hidden=!on;
-    t.textContent=on?'R$ 66':'R$ 47';
-    buy.textContent=on?'Quero por R$66':'Quero por R$47';
-    setLink();
-  });
-  function setLink(){
-    var u=(b.checked&&CHECKOUT.criacaoComEdicao)||CHECKOUT.criacao;
-    if(u){buy.href=u;}
-  }
-  setLink();
-})();
+document.getElementById('buy').href = CHECKOUT.criacao;
 </script>
 </body>
 </html>
