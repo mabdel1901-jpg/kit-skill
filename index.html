@@ -3,14 +3,16 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Kit Criação · Kit Skill</title>
-<meta name="description" content="9 skills de conteúdo para o Claude, em português. Reel, carrossel, legenda, stories e roteiro de YouTube a partir de um pedido.">
+<title>Kit Skill · Texto, Vídeo e Apps</title>
+<meta name="description" content="Kits compatíveis com Claude, em português: 21 skills de texto, o guia de vídeo com HyperFrames e Remotion e o guia dos 16 apps grátis ArtCraft. Cada um sozinho ou os 3 no Kit Completo por R$97.">
+<!-- RASCUNHO (08/11/2026): página única com Kit Texto, Kit Vídeo e Kit Completo. Não publicar antes de o Matheus validar.
+     Versão anterior (só o Kit Texto) em pagina-vendas/_antes/index-texto.html. -->
 <style>
 @font-face{font-family:"Archivo Black";src:url(assets/ArchivoBlack-Regular.ttf) format("truetype");font-display:swap}
 @font-face{font-family:"Outfit";src:url(assets/Outfit.ttf) format("truetype");font-weight:100 900;font-display:swap}
 :root{
   --bg:#14100d;--bg2:#1d1712;--card:#231c16;--line:#3a2e24;
-  --or:#e8743b;--or2:#ff9a5c;--cream:#f6ece2;--mut:#b9a796;
+  --or:#e8743b;--or2:#ff9a5c;--cy:#2ec5e8;--gr:#2fd3a6;--cream:#f6ece2;--mut:#b9a796;
   --r:22px;
 }
 *{box-sizing:border-box;margin:0;padding:0}
@@ -45,11 +47,13 @@ section{padding:60px 0;position:relative}
 .top b{font-family:"Archivo Black";font-weight:400;font-size:20px}
 .top b span{color:var(--or)}
 .top small{font-size:14px;color:var(--mut)}
-.hero-kit{display:block;width:58%;max-width:280px;margin:22px auto -4px;filter:drop-shadow(0 30px 40px rgba(232,116,59,.35))}
-.pricehint{display:flex;align-items:baseline;justify-content:center;gap:10px;margin:18px 0 6px;color:var(--mut);font-size:16px}
+.hero-kit{display:block;width:42%;max-width:220px;margin:14px auto -6px;filter:drop-shadow(0 30px 40px rgba(232,116,59,.35))}
+.pricehint{display:flex;align-items:baseline;justify-content:center;flex-wrap:wrap;gap:4px 10px;margin:18px 0 6px;color:var(--mut);font-size:16px}
 .pricehint b{font-family:"Archivo Black";font-weight:400;font-size:30px;color:var(--cream)}
 
 /* exemplo de conversa */
+.chats{display:grid;gap:18px}
+.chatlabel{font-size:13px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--c,var(--or));margin-bottom:8px}
 .chat{background:#0b0907;border:1px solid var(--line);border-radius:26px;padding:18px;display:grid;gap:12px}
 .msg{border-radius:18px;padding:12px 15px;font-size:16px;max-width:88%}
 .msg.me{justify-self:end;background:var(--or);color:#1a0f08;font-weight:600;border-bottom-right-radius:6px}
@@ -57,6 +61,7 @@ section{padding:60px 0;position:relative}
 .msg.ai small{display:block;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--or);font-weight:700;margin-bottom:6px}
 .msg.ai ol{padding-left:20px;display:grid;gap:4px}
 .msg.ai em{font-style:normal;color:var(--or2);font-weight:700}
+.msg.ai code{font-family:ui-monospace,Consolas,monospace;font-size:14px;color:var(--or2);white-space:nowrap}
 .note{font-size:13px;color:#7a6a5c;text-align:center;margin-top:10px}
 
 /* dor */
@@ -66,6 +71,32 @@ section{padding:60px 0;position:relative}
 .pain b{display:block;font-size:19px}
 .pain span{color:var(--mut);font-size:16px}
 
+/* os kits */
+.kits{display:grid;gap:14px}
+.kc{--c:var(--or);background:var(--card);border:1px solid var(--line);border-top:4px solid var(--c);border-radius:var(--r);padding:20px 20px 16px}
+.kc.v,.mini.v{--c:var(--cy)}
+.kc.a{--c:var(--gr)}
+.kc .hd{display:flex;justify-content:space-between;align-items:baseline;gap:12px}
+.kc h3{font-family:"Archivo Black";font-weight:400;font-size:24px;text-transform:uppercase;color:var(--c);line-height:1.1}
+.kc .price{font-family:"Archivo Black";font-size:20px;white-space:nowrap;text-align:right;line-height:1.1}
+.kc .price small{display:block;font-family:Outfit,sans-serif;font-weight:700;font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--mut)}
+.kc .ks{font-weight:700;font-size:17px;margin:6px 0 12px}
+.kc ul{list-style:none;display:grid;gap:6px;font-size:16px}
+.kc li::before{content:"✓";color:var(--c);font-weight:900;margin-right:10px}
+.kc q{display:block;margin-top:14px;font-size:15px;background:#0b0907;border:1px solid var(--line);border-radius:14px;padding:10px 14px;quotes:"“" "”"}
+.kc .ft{margin-top:12px;font-size:14px;color:var(--mut)}
+.kc .alert{margin-top:10px;font-size:14px;color:#9a8878}
+.kc details{border:0;margin-top:6px}
+.kc details summary{font-size:16px;color:var(--c);padding:10px 34px 6px 0}
+.kc details summary::after{top:2px;color:var(--c)}
+.kc .group{background:var(--bg2)}
+
+/* prova em vídeo */
+.proof{display:grid;justify-items:center;gap:14px}
+.proof video{width:100%;max-width:300px;aspect-ratio:9/16;border-radius:26px;border:1px solid var(--line);background:#0b0907;display:block}
+.proof p{color:var(--mut);font-size:16px;text-align:center;max-width:440px}
+.proof p b{color:var(--cream)}
+
 /* passos */
 .steps{display:grid;gap:14px;counter-reset:s}
 .step{position:relative;background:var(--bg2);border:1px solid var(--line);border-radius:var(--r);padding:22px 20px 22px 86px;min-height:96px}
@@ -74,15 +105,16 @@ section{padding:60px 0;position:relative}
 .step b{display:block;font-size:20px}
 .step span{color:var(--mut);font-size:16px}
 
-/* skills */
-.skills{display:grid;gap:10px}
-.sk{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:15px 18px}
-.sk h3{display:flex;align-items:baseline;gap:10px;font-size:18px;font-weight:800;margin-bottom:3px}
-.sk h3 code{font-family:ui-monospace,Consolas,monospace;font-size:13px;font-weight:600;color:var(--or);background:#2d1a10;border-radius:8px;padding:2px 8px}
-.sk p{color:var(--mut);font-size:15px}
-.sk q{display:block;margin-top:8px;font-size:15px;color:var(--cream);quotes:"“" "”"}
-.pdf{margin-top:12px;display:flex;gap:14px;align-items:center;border:1.5px dashed var(--or);border-radius:var(--r);padding:16px 18px;font-size:16px}
-.pdf b{color:var(--or)}
+/* skills em grupos */
+.group{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:18px 18px 6px;margin-bottom:12px}
+.group > h3{font-family:"Archivo Black";font-weight:400;text-transform:uppercase;font-size:20px;display:flex;justify-content:space-between;align-items:baseline;gap:10px;color:var(--cream)}
+.group > h3 small{font-family:Outfit,sans-serif;font-weight:700;font-size:13px;letter-spacing:.12em;color:var(--or);white-space:nowrap}
+.group > q{display:block;font-size:15px;color:var(--mut);margin:4px 0 10px;quotes:"“" "”";background:none;border:0;padding:0}
+.row{padding:11px 0;border-top:1px solid var(--line)}
+.row b{font-size:17px;font-weight:800}
+.row code{font-family:ui-monospace,Consolas,monospace;font-size:13px;font-weight:600;color:var(--or);background:#2d1a10;border-radius:8px;padding:2px 8px;margin-left:8px;white-space:nowrap}
+.row span{display:block;color:var(--mut);font-size:15px}
+.group .gnote{font-size:14px;color:#9a8878;border-top:1px solid var(--line);padding:11px 0 12px}
 
 /* github x kit */
 .vs{display:grid;gap:12px}
@@ -97,6 +129,13 @@ section{padding:60px 0;position:relative}
 .credits{margin-top:16px;font-size:14px;color:var(--mut)}
 .credits b{color:var(--cream);font-weight:600}
 
+/* avisos */
+.warn{display:grid;gap:12px}
+.warn div{display:flex;gap:14px;align-items:flex-start;background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:18px}
+.warn .i{flex:none;width:30px;height:30px;border-radius:50%;background:var(--or);color:#1a0f08;display:grid;place-items:center;font-weight:900;font-size:17px}
+.warn b{display:block;font-size:18px}
+.warn span{color:var(--mut);font-size:16px}
+
 /* pra quem */
 .who{display:grid;gap:12px}
 .who div{border-radius:var(--r);padding:18px 20px;border:1px solid var(--line)}
@@ -105,16 +144,35 @@ section{padding:60px 0;position:relative}
 .who ul{padding-left:20px;color:var(--mut);font-size:16px;display:grid;gap:4px}
 .who .yes h3{color:var(--or)}
 
-/* oferta */
-.offer{position:relative;background:var(--cream);color:#1a0f08;border-radius:30px;padding:30px 22px 26px;overflow:hidden}
+/* oferta: Kit Completo */
+.offer{position:relative;background:var(--cream);color:#1a0f08;border-radius:30px;padding:30px 22px 24px;overflow:hidden}
 .offer .kitimg{position:absolute;right:-20px;top:-14px;width:112px;transform:rotate(10deg)}
-.offer ul{padding-right:56px}
+.offer .badge{display:inline-block;background:#1a0f08;color:var(--cream);font-size:12px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;border-radius:999px;padding:5px 12px;margin-bottom:12px}
 .offer h2{font-size:30px;max-width:70%;margin-bottom:16px}
-.offer ul{list-style:none;display:grid;gap:8px;margin-bottom:20px;font-size:17px}
+.offer ul{list-style:none;display:grid;gap:8px;margin-bottom:18px;font-size:17px;padding-right:56px}
 .offer li::before{content:"✓";color:var(--or);font-weight:900;margin-right:10px}
+.offer li b{font-weight:800}
+.sum{border-top:1px solid #dcc9b6;padding-top:12px;margin-bottom:14px;display:grid;gap:4px;font-size:16px;color:#5a4a3c}
+.sum div{display:flex;justify-content:space-between;gap:12px}
+.sum .tot{border-top:1px dashed #cdb8a3;padding-top:6px;margin-top:4px;font-weight:800;color:#1a0f08}
 .offer .now{font-family:"Archivo Black";font-size:72px;line-height:1;margin:2px 0 4px}
 .offer .now sup{font-size:28px;vertical-align:28px;margin-right:4px}
 .offer .inst{font-size:16px;color:#5a4a3c;margin-bottom:20px}
+.offer .inst b{color:#9c4518}
+.solo{text-align:center;margin-top:18px;font-size:15px;color:#5a4a3c}
+.solo a{color:#9c4518;font-weight:800}
+
+/* oferta: kits sozinhos */
+.minis{display:grid;gap:12px;margin-top:14px}
+.mini{--c:var(--or);background:var(--bg2);border:1px solid var(--line);border-top:4px solid var(--c);border-radius:var(--r);padding:20px 18px 18px;display:flex;flex-direction:column}
+.mini h3{font-family:"Archivo Black";font-weight:400;font-size:20px;text-transform:uppercase;color:var(--c);line-height:1.1}
+.mini p{color:var(--mut);font-size:15px;margin:4px 0 12px}
+.mini .now{font-family:"Archivo Black";font-size:42px;line-height:1;margin-bottom:6px}
+.mini .now sup{font-size:18px;vertical-align:16px;margin-right:3px}
+.mini .inst{font-size:14px;color:var(--mut);margin-bottom:16px}
+.mini .tip{font-size:14px;color:#9a8878;margin-top:12px;text-align:center}
+.btn.ghost{background:transparent;color:var(--cream);border:2px solid var(--c);box-shadow:none;min-height:54px;font-size:17px;margin-top:auto}
+.btn.ghost:active{transform:translateY(2px)}
 
 /* garantia */
 .guar{display:flex;gap:18px;align-items:center;background:var(--bg2);border:1px solid var(--line);border-radius:var(--r);padding:22px}
@@ -131,10 +189,11 @@ summary::-webkit-details-marker{display:none}
 summary::after{content:"+";position:absolute;right:4px;top:14px;font-size:28px;color:var(--or);transition:transform .2s ease}
 details[open] summary::after{transform:rotate(45deg)}
 details p{color:var(--mut);font-size:16px;padding:0 0 20px}
+details a{color:var(--or2)}
 
 .final{text-align:center}
 .final img{width:170px;margin:0 auto 10px;display:block}
-footer{padding:30px 0 20px;text-align:center;color:#7a6a5c;font-size:13px;line-height:1.6}
+footer{padding:30px 20px 20px;text-align:center;color:#7a6a5c;font-size:13px;line-height:1.6}
 
 /* barra fixa */
 .bar{position:fixed;left:0;right:0;bottom:0;z-index:10;background:rgba(20,16,13,.92);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);
@@ -145,6 +204,7 @@ footer{padding:30px 0 20px;text-align:center;color:#7a6a5c;font-size:13px;line-h
 .bar .t b{font-family:"Archivo Black";font-weight:400;font-size:22px}
 .bar .btn{width:auto;min-height:52px;padding:0 22px;font-size:17px;box-shadow:0 5px 0 #9c4518}
 
+@media (min-width:600px){.minis{grid-template-columns:1fr 1fr}.bar .wrap{padding:0 20px}}
 @media (min-width:900px){.wrap{max-width:640px}}
 @media (prefers-reduced-motion:reduce){*{transition:none!important}}
 </style>
@@ -153,14 +213,14 @@ footer{padding:30px 0 20px;text-align:center;color:#7a6a5c;font-size:13px;line-h
 
 <header class="hero">
   <div class="wrap">
-    <div class="top"><b>kit<span>.</span>skill</b><small>Kit Criação</small></div>
-    <span class="chip"><i></i>9 skills · compatível com Claude</span>
-    <h1>Seu conteúdo <em>sai de um<br>pedido só.</em></h1>
-    <p class="lead">Reel, carrossel, legenda, stories e roteiro de YouTube. Você instala uma vez e pede em português. O Claude já sabe o jeito de fazer.</p>
+    <div class="top"><b>kit<span>.</span>skill</b><small>Texto · Vídeo · Apps</small></div>
+    <span class="chip"><i></i>3 kits · compatível com Claude</span>
+    <h1>Texto e vídeo <em>saem de um<br>pedido só.</em></h1>
+    <p class="lead">21 skills de texto, o guia para montar vídeo com HyperFrames e Remotion e o guia dos 16 apps grátis ArtCraft. Você instala uma vez e pede em português.</p>
     <img class="hero-kit" src="assets/kit-frente.png" alt="Kit, o mascote laranja">
-    <div class="pricehint">pagamento único <b>R$47</b></div>
-    <a class="btn" href="#oferta">Quero o Kit Criação</a>
-    <p class="small">Acesso por e-mail logo após o pagamento · Garantia de 7 dias</p>
+    <div class="pricehint">a partir de <b>R$37</b> · os 3 por <b>R$97</b></div>
+    <a class="btn" href="#oferta">Ver os kits</a>
+    <p class="small">Pagamento único · Acesso por e-mail logo após o pagamento · Garantia de 7 dias</p>
   </div>
 </header>
 
@@ -168,30 +228,145 @@ footer{padding:30px 0 20px;text-align:center;color:#7a6a5c;font-size:13px;line-h
   <div class="wrap">
     <span class="chip"><i></i>Como fica</span>
     <h2>Você pede. <em>Ele entrega pronto.</em></h2>
-    <div class="chat">
-      <div class="msg me">Faz um reel sobre como organizar a semana em 10 minutos</div>
-      <div class="msg ai"><small>skill ig-reel</small>
-        Três ganchos, com nota de 0 a 10:
-        <ol>
-          <li><em>9</em> "Domingo, 10 minutos, semana resolvida."</li>
-          <li><em>8</em> "Pare de começar a segunda sem plano."</li>
-          <li><em>7</em> "O jeito mais rápido de organizar 7 dias."</li>
-        </ol>
-        Depois: fala, texto na tela e tempo de cada trecho.
+    <div class="chats">
+      <div>
+        <div class="chatlabel">Kit Texto</div>
+        <div class="chat">
+          <div class="msg me">Faz um reel sobre como organizar a semana em 10 minutos</div>
+          <div class="msg ai"><small>skill ig-reel</small>
+            Três ganchos, com nota de 0 a 10:
+            <ol>
+              <li><em>9</em> "Domingo, 10 minutos, semana resolvida."</li>
+              <li><em>8</em> "Pare de começar a segunda sem plano."</li>
+              <li><em>7</em> "O jeito mais rápido de organizar 7 dias."</li>
+            </ol>
+            Depois: fala, texto na tela e tempo de cada trecho.
+          </div>
+        </div>
+      </div>
+      <div style="--c:var(--cy)">
+        <div class="chatlabel">Kit Vídeo</div>
+        <div class="chat">
+          <div class="msg me">Faz um Reel vertical de 15 s anunciando a promoção da minha loja, com texto animado e as cores da marca</div>
+          <div class="msg ai"><small>HyperFrames</small>
+            Montei 6 cenas em 1080x1920, com as suas cores. A prévia já está aberta no navegador. Quer ajustar algo antes de gerar o MP4?
+          </div>
+          <div class="msg me">Título maior e mais rápido no começo</div>
+          <div class="msg ai"><small>HyperFrames</small>
+            Feito. O vídeo está em <code>renders/promo.mp4</code>.
+          </div>
+        </div>
       </div>
     </div>
-    <p class="note">Exemplo ilustrativo do formato da resposta.</p>
+    <p class="note">Exemplos ilustrativos do formato da resposta.</p>
   </div>
 </section>
 
 <section>
   <div class="wrap">
     <span class="chip"><i></i>Se você…</span>
-    <h2>Quer postar, mas <em>trava</em> aqui:</h2>
+    <h2>Usa IA, mas <em>trava</em> aqui:</h2>
     <div class="pains">
       <div class="pain"><div class="x">✕</div><div><b>Não sabe por onde começar</b><span>Tela em branco toda vez que vai postar.</span></div></div>
       <div class="pain"><div class="x">✕</div><div><b>Usa IA e sai genérico</b><span>Texto com cara de robô, que ninguém lê até o fim.</span></div></div>
-      <div class="pain"><div class="x">✕</div><div><b>Explica tudo de novo a cada pedido</b><span>Formato, tamanho, gancho, tom. Toda vez.</span></div></div>
+      <div class="pain"><div class="x">✕</div><div><b>Editar vídeo toma a tarde inteira</b><span>Cortar, animar texto e colocar legenda à mão, um vídeo por vez.</span></div></div>
+      <div class="pain"><div class="x">✕</div><div><b>Uma assinatura para cada programa</b><span>Foto, vídeo e PDF, cada um com a sua mensalidade.</span></div></div>
+    </div>
+  </div>
+</section>
+
+<section id="kits">
+  <div class="wrap">
+    <span class="chip"><i></i>Os kits</span>
+    <h2>3 kits. <em>Leva um ou os 3.</em></h2>
+    <div class="kits">
+
+      <div class="kc">
+        <div class="hd"><h3>Kit Texto</h3><div class="price">R$37</div></div>
+        <p class="ks">21 skills de texto, em 3 grupos</p>
+        <ul>
+          <li><b>Criação (9):</b> Reel, carrossel, legenda, stories e roteiro de YouTube</li>
+          <li><b>Edição (5):</b> tira a cara de IA, marca os cortes e escreve o título</li>
+          <li><b>Rotinas (7):</b> pauta de reunião, plano da semana e triagem do e-mail</li>
+        </ul>
+        <q>Tira a cara de IA desse texto</q>
+        <details>
+          <summary>Ver as 21 skills</summary>
+          <div class="group">
+            <h3>Criação <small>9 skills</small></h3>
+            <div class="row"><b>Reel</b><code>ig-reel</code><span>Ganchos com nota, fala, texto na tela e tempo de cada trecho.</span></div>
+            <div class="row"><b>Carrossel</b><code>ig-carousel</code><span>Slide a slide, da capa ao último.</span></div>
+            <div class="row"><b>Legenda</b><code>ig-caption</code><span>Primeira linha pensada para o corte do "… mais".</span></div>
+            <div class="row"><b>Stories</b><code>ig-story</code><span>Sequência do dia, com figurinhas e o story que leva para o direct.</span></div>
+            <div class="row"><b>Plano da semana</b><code>ig-plan</code><span>O que postar, em qual formato e quando.</span></div>
+            <div class="row"><b>Reaproveitar</b><code>ig-repurpose</code><span>Uma live ou vídeo longo vira uma semana de posts.</span></div>
+            <div class="row"><b>Roteiro de YouTube</b><code>yt-script</code><span>Gancho e pontos de retenção marcados.</span></div>
+            <div class="row"><b>Shorts</b><code>yt-shorts</code><span>Acha os trechos de um vídeo longo que viram Shorts.</span></div>
+            <div class="row"><b>Arte</b><code>canvas-design</code><span>Pôster, capa ou peça estática em PNG ou PDF.</span></div>
+          </div>
+          <div class="group">
+            <h3>Edição <small>5 skills</small></h3>
+            <div class="row"><b>Humanizar</b><code>humanizer</code><span>Reescreve o texto com cara de IA para soar como você, sem mudar o que diz.</span></div>
+            <div class="row"><b>Revisão final</b><code>ig-human</code><span>Limpa travessões e palavras típicas de IA e dá uma nota antes de postar.</span></div>
+            <div class="row"><b>Cortes do vídeo</b><code>yt-edit</code><span>Lê a transcrição e marca o que cortar, com minutagem.</span></div>
+            <div class="row"><b>Capítulos</b><code>yt-chapters</code><span>Capítulos do YouTube a partir da transcrição.</span></div>
+            <div class="row"><b>Título e thumb</b><code>yt-package</code><span>Título e texto da thumbnail juntos.</span></div>
+          </div>
+          <div class="group">
+            <h3>Rotinas <small>7 skills</small></h3>
+            <div class="row"><b>Despejo de ideias</b><code>capture</code><span>Organiza o que você jogou ali em projetos, tarefas e notas.</span></div>
+            <div class="row"><b>Reuniões</b><code>meetings</code><span>Diz se a reunião vale a pena, monta a pauta e tira as tarefas das anotações.</span></div>
+            <div class="row"><b>Como você se saiu</b><code>meeting-analyzer</code><span>Lê a transcrição e mostra quanto você fala e se as decisões ficaram claras.</span></div>
+            <div class="row"><b>Revisão da semana</b><code>weekly-review</code><span>Pendências abertas, projetos parados e próximos passos.</span></div>
+            <div class="row"><b>Blocos de foco</b><code>deep-work</code><span>Planeja o dia com blocos de foco.</span></div>
+            <div class="row"><b>Regras do e-mail</b><code>inbox-setup</code><span>Prepara o que é urgente e o seu tom de resposta.</span></div>
+            <div class="row"><b>Triagem do e-mail</b><code>inbox-triage</code><span>Separa os e-mails por prioridade e escreve rascunhos de resposta.</span></div>
+            <p class="gnote">As duas de e-mail precisam do Gmail conectado ao Claude. Elas só escrevem rascunhos e nunca enviam nada.</p>
+          </div>
+        </details>
+        <p class="ft">3 guias em PDF, um por grupo · instala em Personalizar › Skills</p>
+      </div>
+
+      <div class="kc v">
+        <div class="hd"><h3>Kit Vídeo</h3><div class="price">R$47</div></div>
+        <p class="ks">Guia do HyperFrames e do Remotion</p>
+        <ul>
+          <li>Reel com legenda palavra por palavra</li>
+          <li>Anúncio em motion graphic</li>
+          <li>Vídeo com gráfico e números</li>
+          <li>Vários vídeos de uma planilha</li>
+        </ul>
+        <q>Faz um anúncio de 15 s da minha promoção</q>
+        <p class="ft">Guia em PDF · 6 pedidos prontos e frases de ajuste · usa o Claude Code</p>
+      </div>
+
+      <div class="kc a">
+        <div class="hd"><h3>Kit Apps</h3><div class="price"><small>no Completo ou</small>R$37</div></div>
+        <p class="ks">Guia dos 16 apps grátis ArtCraft</p>
+        <ul>
+          <li>Foto, vetor e arquivo RAW</li>
+          <li>Edição de vídeo, efeitos e som</li>
+          <li>PDF, texto, planilha e apresentação</li>
+          <li>Tela de app, desenho técnico e 3D</li>
+        </ul>
+        <q>Clareia essa foto e corta em 4:5 para o feed</q>
+        <p class="ft">Guia em PDF · uma página por app, com 3 pedidos prontos · usa o Claude Code</p>
+        <p class="alert">Os apps estão em alpha: salve uma cópia antes de editar. Eles ainda não substituem o Photoshop no dia a dia.</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <span class="chip"><i></i>Prova</span>
+    <h2>Os vídeos do @okit.ia <em>foram feitos assim.</em></h2>
+    <div class="proof">
+      <video controls playsinline preload="none" poster="assets/demo-poster.jpg">
+        <source src="assets/demo.mp4" type="video/mp4">
+      </video>
+      <p>Um Reel do perfil. <b>O Claude escreveu as cenas e a legenda, e o HyperFrames gerou o MP4.</b> O mascote 3D foi feito à parte e não entra no kit.</p>
     </div>
   </div>
 </section>
@@ -201,69 +376,90 @@ footer{padding:30px 0 20px;text-align:center;color:#7a6a5c;font-size:13px;line-h
     <span class="chip"><i></i>Como funciona</span>
     <h2>3 passos. <em>Sem curso.</em></h2>
     <div class="steps">
-      <div class="step"><b>Baixa o kit</b><span>Chega no seu e-mail: um zip com as 9 skills e o guia em PDF.</span></div>
-      <div class="step"><b>Instala no Claude</b><span>Personalizar › Skills › enviar o arquivo. Uma vez só. O guia mostra cada tela.</span></div>
-      <div class="step"><b>Pede em português</b><span>Do jeito que você fala. O Claude escolhe a skill certa.</span></div>
+      <div class="step"><b>Recebe por e-mail</b><span>Logo depois do pagamento: as skills e os guias em PDF.</span></div>
+      <div class="step"><b>Instala uma vez</b><span>O guia mostra cada tela, no Windows e no Mac. As skills vão em Personalizar › Skills; o vídeo e os apps usam o Claude Code.</span></div>
+      <div class="step"><b>Pede em português</b><span>Do jeito que você fala, ou cola um dos pedidos prontos.</span></div>
     </div>
-  </div>
-</section>
-
-<section>
-  <div class="wrap">
-    <span class="chip"><i></i>O que você recebe</span>
-    <h2>9 skills de <em>conteúdo</em></h2>
-    <div class="skills">
-      <div class="sk"><h3>Reel <code>ig-reel</code></h3><p>Ganchos com nota, fala, texto na tela e tempo de cada trecho.</p><q>Faz um reel sobre como organizar a semana</q></div>
-      <div class="sk"><h3>Carrossel <code>ig-carousel</code></h3><p>Slide a slide, da capa ao último.</p><q>Transforma esse texto num carrossel de 7 slides</q></div>
-      <div class="sk"><h3>Legenda <code>ig-caption</code></h3><p>Primeira linha pensada para o corte do "… mais".</p><q>Escreve a legenda desse reel</q></div>
-      <div class="sk"><h3>Stories <code>ig-story</code></h3><p>Sequência do dia, com figurinhas e o story que leva para o direct.</p><q>Monta meus stories de hoje</q></div>
-      <div class="sk"><h3>Plano da semana <code>ig-plan</code></h3><p>O que postar, em qual formato e quando.</p><q>Planeja minha semana no Instagram</q></div>
-      <div class="sk"><h3>Reaproveitar <code>ig-repurpose</code></h3><p>Uma live ou vídeo longo vira uma semana de posts.</p><q>Transforma essa live em posts da semana</q></div>
-      <div class="sk"><h3>Roteiro de YouTube <code>yt-script</code></h3><p>Gancho e pontos de retenção marcados.</p><q>Escreve o roteiro do meu próximo vídeo</q></div>
-      <div class="sk"><h3>Shorts <code>yt-shorts</code></h3><p>Acha os trechos de um vídeo longo que viram Shorts.</p><q>Quais Shorts eu tiro dessa transcrição?</q></div>
-      <div class="sk"><h3>Arte <code>canvas-design</code></h3><p>Pôster, capa ou peça estática em PNG ou PDF.</p><q>Cria um pôster para o meu evento de sábado</q></div>
-    </div>
-    <div class="pdf"><img src="assets/kit-sorriso.png" alt="" width="60" height="60"><div><b>Guia em PDF (19 páginas):</b> instalação passo a passo, os pedidos prontos de cada skill e o que fazer se travar.</div></div>
   </div>
 </section>
 
 <section>
   <div class="wrap">
     <span class="chip"><i></i>Sendo honesto</span>
-    <h2>As skills são <em>abertas no GitHub.</em></h2>
-    <p class="lead" style="margin:-6px 0 22px">Quem escreveu foram os autores abaixo, com licença livre. O que o kit faz é o resto do caminho.</p>
+    <h2>Tudo é <em>aberto no GitHub.</em></h2>
+    <p class="lead" style="margin:-6px 0 22px">As skills, as ferramentas e os apps são dos autores abaixo, com licença livre. O que o kit faz é o resto do caminho.</p>
     <div class="vs">
-      <div class="gh"><h3>Sozinho no GitHub</h3><ul><li>Achar as boas entre milhares</li><li>Baixar e montar cada uma</li><li>Ler tudo em inglês</li><li>Descobrir como instalar</li></ul></div>
-      <div class="kit"><h3>Com o Kit Criação</h3><ul><li>9 escolhidas e testadas para conteúdo</li><li>Prontas para enviar ao Claude</li><li>Ajustadas para responder em português</li><li>Guia em PDF e suporte por e-mail</li></ul></div>
+      <div class="gh"><h3>Sozinho no GitHub</h3><ul><li>Achar o que presta entre milhares</li><li>Ler tudo em inglês</li><li>Descobrir o que instalar e em que ordem</li><li>Resolver os erros sozinho</li></ul></div>
+      <div class="kit"><h3>Com o Kit Skill</h3><ul><li>Escolhidas e testadas</li><li>Ajustadas para responder em português</li><li>Guias passo a passo e pedidos prontos</li><li>Suporte por e-mail</li></ul></div>
     </div>
-    <p class="credits">Créditos: <b>Jakeschincariol</b> (instagram-agent-skill e youtube-agent-skill, licença MIT) e <b>Anthropic</b> (canvas-design, do repositório anthropics/skills, licença Apache-2.0). A lista completa vai junto no kit.</p>
+    <p class="credits">Créditos: <b>Jakeschincariol</b> (instagram-agent-skill e youtube-agent-skill, licença MIT), <b>blader</b> (humanizer, MIT), <b>alirezarezvani</b> (claude-skills, MIT), <b>Anthropic</b> (canvas-design, Apache-2.0), <b>HyperFrames</b>, da HeyGen (Apache-2.0), <b>Remotion</b> (licença própria, grátis para pessoa física e empresa de até 3 pessoas) e os apps <b>ArtCraft</b> (MIT e Apache-2.0, em getartcraft.com). A lista completa vai junto em cada kit.</p>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <span class="chip"><i></i>Antes de comprar</span>
+    <h2>O que você <em>precisa ter</em></h2>
+    <div class="warn">
+      <div><span class="i">!</span><p><b>Um plano pago do Claude</b><span>Pro, Max e acima. O Kit Texto usa Personalizar › Skills, com a execução de código ligada. O Kit Vídeo e o Kit Apps usam o Claude Code, que o plano grátis não tem.</span></p></div>
+      <div><span class="i">!</span><p><b>Um computador com Windows ou Mac</b><span>A instalação é feita no computador. O vídeo e os apps rodam nele e não funcionam só no celular.</span></p></div>
+      <div><span class="i">!</span><p><b>Remotion só é grátis até 3 pessoas</b><span>Acima disso, a licença é paga à Remotion e não está incluída. O HyperFrames não tem esse limite.</span></p></div>
+    </div>
   </div>
 </section>
 
 <section>
   <div class="wrap">
     <div class="who">
-      <div class="yes"><h3>É pra você se</h3><ul><li>posta no Instagram ou no YouTube</li><li>já usa ou quer usar o Claude</li><li>quer parar de explicar tudo a cada pedido</li></ul></div>
-      <div><h3>Não é pra você se</h3><ul><li>procura um curso longo com aulas</li><li>quer que a IA poste sozinha por você</li></ul></div>
+      <div class="yes"><h3>É pra você se</h3><ul><li>posta no Instagram ou no YouTube</li><li>quer que o texto feito com IA soe como você</li><li>faz Reels, anúncios ou vídeos curtos</li><li>já usa ou quer usar o Claude</li></ul></div>
+      <div><h3>Não é pra você se</h3><ul><li>procura um curso longo com aulas</li><li>quer que a IA poste ou mande e-mail sozinha</li><li>quer filmar ou criar pessoas falando</li></ul></div>
     </div>
   </div>
 </section>
 
 <section id="oferta">
   <div class="wrap">
+    <span class="chip"><i></i>Preços</span>
+    <h2>Escolha <em>o seu kit</em></h2>
+
     <div class="offer">
       <img class="kitimg" src="assets/kit-sorriso.png" alt="">
-      <h2>Kit Criação</h2>
+      <span class="badge">Os 3 kits</span>
+      <h2>Kit Completo</h2>
       <ul>
-        <li>9 skills de conteúdo prontas</li>
-        <li>Ajustadas para português</li>
-        <li>Guia em PDF de 19 páginas</li>
+        <li><b>Kit Texto:</b> 21 skills e 3 guias</li>
+        <li><b>Kit Vídeo:</b> HyperFrames + Remotion</li>
+        <li><b>Kit Apps:</b> 16 apps ArtCraft</li>
         <li>Suporte por e-mail</li>
       </ul>
-      <div class="now"><sup>R$</sup>47</div>
-      <div class="inst">pagamento único · Pix ou cartão</div>
+      <div class="sum">
+        <div><span>Kit Texto sozinho</span><span>R$37</span></div>
+        <div><span>Kit Vídeo sozinho</span><span>R$47</span></div>
+        <div><span>Kit Apps sozinho</span><span>R$37</span></div>
+        <div class="tot"><span>Separados</span><span>R$121</span></div>
+      </div>
+      <div class="now"><sup>R$</sup>97</div>
+      <div class="inst">pagamento único · Pix ou cartão · <b>você economiza R$24</b></div>
+      <a class="btn" href="https://pay.kiwify.com.br/N5YjbCj" id="buy-completo">Quero os 3 por R$97</a>
+      <p class="solo">Quer só o Kit Apps? <a href="https://pay.kiwify.com.br/I5J2VL2" id="buy-apps">Comprar por R$37</a></p>
+    </div>
 
-      <a class="btn" href="#checkout" id="buy">Quero por R$47</a>
+    <div class="minis">
+      <div class="mini">
+        <h3>Kit Texto</h3>
+        <p>21 skills de texto e 3 guias em PDF</p>
+        <div class="now"><sup>R$</sup>37</div>
+        <div class="inst">pagamento único</div>
+        <a class="btn ghost" href="https://pay.kiwify.com.br/pzJCFZL" id="buy-texto">Quero o Texto</a>
+      </div>
+      <div class="mini v">
+        <h3>Kit Vídeo</h3>
+        <p>Guia do HyperFrames e do Remotion</p>
+        <div class="now"><sup>R$</sup>47</div>
+        <div class="inst">pagamento único</div>
+        <a class="btn ghost" href="https://pay.kiwify.com.br/eubkIQE" id="buy-video">Quero o Vídeo</a>
+        <p class="tip">No pagamento, dá para juntar o Kit Apps por +R$27.</p>
+      </div>
     </div>
   </div>
 </section>
@@ -281,12 +477,18 @@ footer{padding:30px 0 20px;text-align:center;color:#7a6a5c;font-size:13px;line-h
   <div class="wrap">
     <span class="chip"><i></i>Dúvidas</span>
     <h2>Perguntas <em>frequentes</em></h2>
-    <details><summary>Se é grátis no GitHub, por que pagar?</summary><p>Você pode montar sozinho, e a página diz onde estão. O kit economiza a busca, a montagem e a leitura em inglês: entrega as 9 já escolhidas, ajustadas para responder em português, com guia e suporte.</p></details>
-    <details><summary>Funciona em qual Claude?</summary><p>No app do Claude, na área Personalizar › Skills, com a execução de código ligada, e também no Claude Code. O guia mostra onde ligar cada opção. Se no seu plano não aparecer, a garantia de 7 dias cobre.</p></details>
-    <details><summary>A IA posta sozinha?</summary><p>Não. As skills escrevem o roteiro, a legenda, o carrossel e a arte. Quem revisa e posta é você.</p></details>
-    <details><summary>Responde em português?</summary><p>Sim. Os textos originais das skills são em inglês, e cada uma recebeu uma nota que faz o Claude responder em português do Brasil.</p></details>
-    <details><summary>Preciso saber programar?</summary><p>Não. É enviar o arquivo uma vez e pedir em português.</p></details>
-    <details><summary>Como eu recebo?</summary><p>Logo depois do pagamento chega no seu e-mail o link do kit (zip) e do guia em PDF.</p></details>
+    <details><summary>Qual kit é para mim?</summary><p>Kit Texto para escrever: post, roteiro, legenda, reunião e e-mail. Kit Vídeo para montar Reel, anúncio e vídeo com gráfico. Kit Apps para editar foto, vídeo, som e PDF nos apps grátis ArtCraft. O Completo junta os 3.</p></details>
+    <details><summary>Posso comprar um kit só?</summary><p>Pode. Kit Texto R$37, Kit Vídeo R$47 e Kit Apps R$37, cada um com o seu botão. O Completo junta os 3 por R$97; separados, custam R$121.</p></details>
+    <details><summary>Preciso saber programar?</summary><p>Não. Você pede em português, e o Claude faz o resto. Os guias mostram cada tela da instalação.</p></details>
+    <details><summary>Qual plano do Claude eu preciso?</summary><p>Um plano pago: Pro, Max e acima. O Kit Texto usa Personalizar › Skills, com a execução de código ligada. O Kit Vídeo e o Kit Apps usam o Claude Code, que o plano grátis não tem. Se no seu plano não aparecer, a garantia de 7 dias cobre.</p></details>
+    <details><summary>Se é grátis no GitHub, por que pagar?</summary><p>Você pode montar sozinho, e a página diz onde está cada coisa. O kit economiza a busca, a montagem e a leitura em inglês: entrega tudo escolhido, em português, com guias, pedidos prontos e suporte.</p></details>
+    <details><summary>Funciona no Mac?</summary><p>Sim. Os guias têm o passo a passo no Windows e no Mac. O vídeo e os apps não funcionam só no celular.</p></details>
+    <details><summary>A IA posta sozinha?</summary><p>Não. Ela escreve, monta o vídeo e edita o arquivo. Quem revisa, posta e envia é você.</p></details>
+    <details><summary>A Remotion é grátis?</summary><p>Para pessoa física e empresa de até 3 pessoas, sim. Acima disso, a Remotion cobra uma licença, que não está incluída. O HyperFrames é aberto (Apache-2.0) e não tem esse limite.</p></details>
+    <details><summary>Os apps substituem o Photoshop?</summary><p>Ainda não. Os apps ArtCraft estão em alpha e servem para pedidos do dia a dia feitos ao Claude. Salve sempre uma cópia antes de editar.</p></details>
+    <details><summary>Tem garantia?</summary><p>Sim, 7 dias. Se não servir, peça o reembolso e recebe tudo de volta, sem pergunta.</p></details>
+    <details><summary>E se eu travar?</summary><p>Escreva para <a href="mailto:mabdel1901@gmail.com">mabdel1901@gmail.com</a>. Cada guia também tem uma página de erros comuns.</p></details>
+    <details><summary>Como eu recebo?</summary><p>Logo depois do pagamento chega no seu e-mail o acesso aos arquivos. No Completo, os 3 kits ficam no mesmo lugar.</p></details>
   </div>
 </section>
 
@@ -294,28 +496,25 @@ footer{padding:30px 0 20px;text-align:center;color:#7a6a5c;font-size:13px;line-h
   <div class="wrap">
     <img src="assets/kit-frente.png" alt="">
     <h2>Seu próximo post <em>sai de um pedido.</em></h2>
-    <a class="btn" href="#oferta">Quero o Kit Criação</a>
+    <a class="btn" href="#oferta">Ver os kits</a>
   </div>
 </section>
 
-<footer>@okit.ia · Kit Skill, compatível com Claude. Sem vínculo com a Anthropic.<br>Skills de código aberto, com créditos aos autores.</footer>
+<footer>@okit.ia · Kit Skill, compatível com Claude.<br>Produto independente, sem vínculo com a Anthropic, a HeyGen, a Remotion ou o ArtCraft.<br>Skills, ferramentas e apps de código aberto, com créditos aos autores.</footer>
 
 <div class="bar">
   <div class="wrap">
-    <div class="t"><small>Kit Criação · 9 skills</small><b>R$47</b></div>
+    <div class="t"><small>Kit Completo · os 3 kits</small><b>R$97</b></div>
     <a class="btn" href="#oferta">Quero</a>
   </div>
 </div>
 
-<script>
-/* ===== LINKS DO CHECKOUT (Kiwify) =====
-   Cole aqui os links que a Kiwify der para cada oferta.
-   - criacao: checkout do Kit Criação (R$47). O order bump do Kit Edição
-     (R$19) aparece dentro desse checkout, configurado na Kiwify. */
-var CHECKOUT = {
-  criacao: "https://pay.kiwify.com.br/pzJCFZL"
-};
-document.getElementById('buy').href = CHECKOUT.criacao;
-</script>
+<!-- ===== LINKS DO CHECKOUT (Kiwify) =====
+     Os links ficam direto no href de cada botão:
+     - buy-completo: Kit Completo · Kit Skill, R$97   https://pay.kiwify.com.br/N5YjbCj (sem caixa de bump)
+     - buy-texto:    Kit Texto · Kit Skill, R$37      https://pay.kiwify.com.br/pzJCFZL
+     - buy-video:    Kit Vídeo · Kit Skill, R$47      https://pay.kiwify.com.br/eubkIQE (com a caixa do Kit Apps +R$27)
+     - buy-apps:     Kit Apps · Kit Skill, R$37       https://pay.kiwify.com.br/I5J2VL2
+     Nunca usar aqui os links das ofertas combo (DqgRna2 e 4bT3CMa): eles só servem para as caixas do order bump. -->
 </body>
 </html>
