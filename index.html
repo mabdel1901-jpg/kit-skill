@@ -516,5 +516,37 @@ footer{padding:30px 20px 20px;text-align:center;color:#7a6a5c;font-size:13px;lin
      - buy-video:    Kit Vídeo · Kit Skill, R$47      https://pay.kiwify.com.br/eubkIQE (com a caixa do Kit Apps +R$27)
      - buy-apps:     Kit Apps · Kit Skill, R$37       https://pay.kiwify.com.br/I5J2VL2
      Nunca usar aqui os links das ofertas combo (ver checkout-video.md): eles só servem para as caixas do order bump. -->
+<!-- ===== RASTREIO DE VISITAS (Supabase, tabela kit_eventos) =====
+     Grava só: visita, até onde rolou, se viu os kits e a oferta, qual botão de compra clicou e quanto tempo ficou.
+     Nada pessoal: o visitante é um código aleatório guardado no navegador.
+     A chave abaixo é pública (só deixa inserir eventos, não deixa ler). -->
+<script>
+(function(){
+  var URL_SB="https://ddbrfpqhhhvbbrphuarw.supabase.co/rest/v1/kit_eventos", KEY="sb_publishable_jdC-KYlGTxblsJdB_K-_gg_2uLWTA2y";
+  function id(k){var v;try{v=localStorage.getItem(k);if(!v){v=Math.random().toString(36).slice(2)+Date.now().toString(36);localStorage.setItem(k,v)}}catch(e){v="sem-storage"}return v}
+  var vis=id("kit_vis"), ses=Math.random().toString(36).slice(2), t0=Date.now(), feitos={};
+  var q=new URLSearchParams(location.search), ref=document.referrer||"";
+  var origem=q.get("utm_source")||q.get("o")||(/instagram/i.test(ref+navigator.userAgent)?"instagram":/tiktok|musical_ly|bytedance/i.test(ref+navigator.userAgent)?"tiktok":/facebook|fban|fbav/i.test(ref+navigator.userAgent)?"facebook":ref?ref.split("/")[2]:"direto");
+  var aparelho=/mobi|android|iphone/i.test(navigator.userAgent)?"celular":"computador";
+  function envia(evento,detalhe){
+    try{fetch(URL_SB,{method:"POST",keepalive:true,headers:{"apikey":KEY,"Content-Type":"application/json","Prefer":"return=minimal"},
+      body:JSON.stringify({visitante:vis,sessao:ses,evento:evento,detalhe:detalhe||null,pagina:location.pathname,origem:origem,aparelho:aparelho})}).catch(function(){})}catch(e){}
+  }
+  function uma(evento,detalhe){var k=evento+(detalhe||"");if(feitos[k])return;feitos[k]=1;envia(evento,detalhe)}
+  uma("visita");
+  // até onde rolou (25/50/75/100%)
+  addEventListener("scroll",function(){var h=document.documentElement,p=(h.scrollTop+innerHeight)/h.scrollHeight*100;
+    [25,50,75,100].forEach(function(m){if(p>=m-2)uma("rolou",m+"%")})},{passive:true});
+  // viu as seções
+  if("IntersectionObserver" in window){var ob=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting)uma("viu",e.target.id)})},{rootMargin:"-45% 0px -45% 0px"});
+    ["kits","oferta"].forEach(function(s){var el=document.getElementById(s);if(el)ob.observe(el)})}
+  // cliques
+  document.addEventListener("click",function(e){var a=e.target.closest&&e.target.closest("a");if(!a)return;
+    if(a.id&&a.id.indexOf("buy-")===0)envia("clicou_comprar",a.id.slice(4));
+    else if(a.closest(".bar"))envia("clicou_barra","oferta")});
+  // tempo na página
+  addEventListener("pagehide",function(){uma("saiu",Math.round((Date.now()-t0)/1000)+"s")});
+})();
+</script>
 </body>
 </html>
